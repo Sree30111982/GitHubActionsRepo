@@ -3,9 +3,11 @@ name: Simple Terraform Workflow
 on:
   push:
     branches:
-      - main
-      - feature_terraform
+      #- main
+      #- feature_terraform
   pull_request:
+    branches:
+      - feature_terraform
 
 jobs:
   terraform:
