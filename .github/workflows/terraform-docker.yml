@@ -24,7 +24,6 @@ jobs:
       # Step 3: Install Docker (usually pre-installed on ubuntu-latest)
       - name: Docker Install
         run: |
-          sudo apt-get install -y docker.io
           sudo systemctl enable docker
           sudo systemctl start docker
           docker --version
