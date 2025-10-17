@@ -1,0 +1,52 @@
+name: Terraform with Docker
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  terraform-docker:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout repo
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Set up Terraform
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.6.6
+
+      # Step 3: Install Docker (usually pre-installed on ubuntu-latest)
+      - name: Ensure Docker is installed
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y docker.io
+          docker --version
+
+      # Step 4: Terraform Init
+      - name: Terraform Init
+        run: terraform init
+
+      # Step 5: Terraform Apply
+      - name: Terraform Apply
+        run: terraform apply -auto-approve
+
+      # Step 6: Run Docker Commands
+      - name: Run Docker Commands
+        run: |
+          docker pull alpine
+          docker run --name test-container -d alpine sleep 30
+          docker ps -a
+          docker exec test-container echo "Docker is working with Terraform workflow!"
+          docker stop test-container
+          docker rm test-container
+
+      # Step 7: Terraform Destroy (optional)
+      - name: Terraform Destroy
+        if: always()
+        run: terraform destroy -auto-approve
