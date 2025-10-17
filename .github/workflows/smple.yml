@@ -1,0 +1,31 @@
+name: Run Shell Commands
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  run-shell:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run basic shell commands
+        run: |
+          echo "🚀 Running shell commands on GitHub Actions"
+          echo "Current directory:"
+          pwd
+          echo "List of files:"
+          ls -al
+          echo "Date and time:"
+          date
+
+      - name: Create and read a file
+        run: |
+          echo "Hello from GitHub Actions!" > message.txt
+          echo "File content:"
+          cat message.txt
