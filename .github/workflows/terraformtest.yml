@@ -1,12 +1,9 @@
 name: Simple Terraform Workflow
 
 on:
-  push:
-   branches:
-      
-  pull_request:
-    branches:
-      
+  schedule:
+    - cron: '0 0 * * *'   # Every day at midnight UTC
+     
 
 jobs:
   terraform:
