@@ -52,9 +52,3 @@ jobs:
           ls -al
           echo "Date and time:"
           date
-
-      - name: Create and read a file
-        run: |
-          echo "Hello from GitHub Actions!" > message.txt
-          echo "File content:"
-          cat message.txt
