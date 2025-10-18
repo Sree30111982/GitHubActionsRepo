@@ -31,3 +31,9 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+          pwd
+          df -hl
+          free -m
+          uname -a
+          ls -ltr
+          date
