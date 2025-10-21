@@ -1,0 +1,50 @@
+name: Display Terraform Logs
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  run-shell:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      # Step 2: Set up Terraform
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.6.6
+
+      # Step 3: Initialize Terraform
+      - name: Terraform Init
+        run: |
+          export TF_LOG=DEBUG
+          export TF_LOG_PATH=terraform_init.log
+          terraform init || true
+
+      # Step 4: Validate Terraform files
+      - name: Terraform Validate
+        run: |
+          export TF_LOG=DEBUG
+          export TF_LOG_PATH=terraform_validate.log
+          terraform init || true
+
+      # Step 5: Plan Terraform execution
+      - name: Terraform Plan
+        run: |
+          export TF_LOG=DEBUG
+          export TF_LOG_PATH=terraform_plan.log
+          terraform init || true
+
+      - name: Run basic shell commands
+        run: |
+          echo "🚀 Running shell commands on GitHub Actions"
+          echo "Current directory:"
+          pwd
+          echo "List of files:"
+          ls -al
+          echo "Date and time:"
+          date
+          echo "ALL TERRAFORM FILES SHOWING UP IN GITHUB WORKFLOW STATUS VIEW"
+          
