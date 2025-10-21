@@ -22,20 +22,23 @@ jobs:
           export TF_LOG=DEBUG
           export TF_LOG_PATH=terraform_init.log
           terraform init || true
+          cat terraform_init.log
 
       # Step 4: Validate Terraform files
       - name: Terraform Validate
         run: |
           export TF_LOG=DEBUG
           export TF_LOG_PATH=terraform_validate.log
-          terraform init || true
+          terraform validate || true
+          terraform_validate.log
 
       # Step 5: Plan Terraform execution
       - name: Terraform Plan
         run: |
           export TF_LOG=DEBUG
           export TF_LOG_PATH=terraform_plan.log
-          terraform init || true
+          terraform plan || true
+          cat terraform_plan.log
 
       - name: Run basic shell commands
         run: |
