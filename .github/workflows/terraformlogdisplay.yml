@@ -34,7 +34,7 @@ jobs:
           export TF_LOG=DEBUG
           export TF_LOG_PATH=terraform_validate.log
           terraform validate || true
-          terraform_validate.log
+          cat terraform_validate.log
 
       # Step 5: Plan Terraform execution
       - name: Terraform Plan
