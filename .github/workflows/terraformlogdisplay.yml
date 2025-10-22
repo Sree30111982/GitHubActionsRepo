@@ -54,4 +54,7 @@ jobs:
           echo "Date and time:"
           date
           echo "ALL TERRAFORM FILES SHOWING UP IN GITHUB WORKFLOW STATUS VIEW"
+          terraform version
+          echo $TF_LOG
+          echo $TF_LOG_PATH
           
