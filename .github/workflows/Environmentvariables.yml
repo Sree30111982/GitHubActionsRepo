@@ -1,0 +1,19 @@
+name: Print Defined Environment Variables
+
+on:
+  workflow_dispatch:
+
+env:
+  APP_ENV: production
+  APP_VERSION: v1.2.3
+  REGION: us-east-1
+
+jobs:
+  print-env:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print workflow-level environment variables
+        run: |
+          echo "APP_ENV = $APP_ENV"
+          echo "APP_VERSION = $APP_VERSION"
+          echo "REGION = $REGION"
