@@ -18,3 +18,4 @@ jobs:
           echo "APP_VERSION = $APP_VERSION"
           echo "REGION = $REGION"
           docker version
+          docker run -d --name yshu -it -p 9445:80 nginx:latest
