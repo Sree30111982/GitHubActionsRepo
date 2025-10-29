@@ -1,0 +1,19 @@
+# Use the official Jenkins LTS image
+FROM jenkins/jenkins:lts
+
+USER root
+
+# Install extra tools (optional)
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    docker.io \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN usermod -aG docker jenkins
+
+EXPOSE 8080
+EXPOSE 50000
+
+USER jenkins
+
