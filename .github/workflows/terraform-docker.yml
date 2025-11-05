@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [ main ] 
 
+  on:
+  workflow_dispatch:
+
 jobs:
   terraform-docker:
     runs-on: ubuntu-latest
