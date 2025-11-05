@@ -36,7 +36,7 @@ jobs:
 
       # Step 5: Terraform Apply
       - name: Terraform Apply
-        run: terraform apply -auto-approve
+        run: terraform apply -replace="docker_container.nginx_server1" -auto-approve
 
       # Step 6: Run Docker Commands
       - name: Run Docker Commands
