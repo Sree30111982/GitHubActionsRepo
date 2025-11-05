@@ -34,17 +34,17 @@ jobs:
       - name: Terraform Init
         run: terraform init
 
+          # Step 4: Terraform Taint
+      - name: Terraform Taint
+        run: terraform taint "docker_container.nginx_server1"
+
         # Step 4: Terraform Plan
       - name: Terraform plan
         run: terraform plan
 
-         # Step 4: Terraform Taint
-      - name: Terraform Taint
-        run: terraform taint "docker_container.nginx_server1"
-
-      # Step 5: Terraform Apply
-      #- name: Terraform Apply
-       # run: terraform apply -replace="docker_container.nginx_server1" -auto-approve
+        # Step 5: Terraform Apply
+      - name: Terraform Apply
+        run: terraform apply -replace="docker_container.nginx_server1" -auto-approve
 
       # Step 6: Run Docker Commands
       - name: Run Docker Commands
