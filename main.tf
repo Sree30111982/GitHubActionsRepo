@@ -22,6 +22,7 @@ resource "docker_container" "nginx_server1" {
     internal = 80
     external = 8080
   }
+  depends_on = [ docker_container.nginx_server2 ]
 }
 
 # Create Nginx container
@@ -32,4 +33,5 @@ resource "docker_container" "nginx_server2" {
     internal = 80
     external = 8081
   }
+  
 }
