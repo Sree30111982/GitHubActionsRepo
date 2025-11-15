@@ -6,6 +6,8 @@ on:
   pull_request:
     branches: [ main ] 
 
+  workflow_dispatch:
+
 jobs:
   terraform-docker:
     runs-on: ubuntu-latest
@@ -32,9 +34,17 @@ jobs:
       - name: Terraform Init
         run: terraform init
 
-      # Step 5: Terraform Apply
+          # Step 4: Terraform Taint
+      - name: Terraform Taint
+        run: terraform taint "docker_container.nginx_server1"
+
+        # Step 4: Terraform Plan
+      - name: Terraform plan
+        run: terraform plan
+
+        # Step 5: Terraform Apply
       - name: Terraform Apply
-        run: terraform apply -auto-approve
+        run: terraform apply
 
       # Step 6: Run Docker Commands
       - name: Run Docker Commands
@@ -47,6 +57,6 @@ jobs:
           docker rm test-container
 
       # Step 7: Terraform Destroy (optional)
-      - name: Terraform Destroy
-        if: always()
-        run: terraform destroy -auto-approve
+      #- name: Terraform Destroy
+       # if: always()
+        #run: terraform destroy -auto-approve
