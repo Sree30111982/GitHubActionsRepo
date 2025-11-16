@@ -1,0 +1,51 @@
+pipeline {
+    agent any
+
+    environment {
+        // Optional: define your repo URL as an environment variable
+        GIT_REPO = 'https://github.com/Sree30111982/GitHubActionsRepo.git'
+        // The Jenkins credentials ID stored in Credentials Manager
+        GIT_CREDENTIALS_ID = 'Jenkins_to_github'
+        // Branch to pull
+        GIT_BRANCH = 'main'
+    }
+
+    stages {
+        stage('Checkout Code') {
+            steps {
+                script {
+                    cleanWs()
+                    // Checkout the repository using Jenkins credentials
+                    checkout([
+                        $class: 'GitSCM',
+                        branches: [[name: "*/${env.GIT_BRANCH}"]],
+                        userRemoteConfigs: [[
+                            url: env.GIT_REPO,
+                            credentialsId: env.GIT_CREDENTIALS_ID
+                        ]]
+                    ])
+                }
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo 'Building the project...'
+                // e.g. sh 'mvn clean install'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo 'Running tests...'
+                // e.g. sh 'mvn test'
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'Pipeline finished. with success'
+        }
+    }
+}

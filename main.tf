@@ -22,19 +22,10 @@ resource "docker_container" "nginx_server1" {
     internal = 80
     external = 9090
   }
-  depends_on = [ docker_container.nginx_server2 ]
+  #depends_on = [ docker_container.nginx_server2 ]
+
+    
 }
 
-# Create Nginx container
-resource "docker_container" "nginx_server2" {
-  name  = "nginx_server2"
-  image = docker_image.nginx.image_id
-  ports {
-    internal = 80
-    external = 9091
-  }
-  lifecycle {
-    prevent_destroy = true
-  }
-  
-}
+
+
