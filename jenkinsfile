@@ -8,6 +8,7 @@ pipeline {
         GIT_CREDENTIALS_ID = 'Jenkins_to_github'
         // Branch to pull
         GIT_BRANCH = 'main'
+        NO_PROXY    = "localhost,127.0.0.1"
     }
 
     stages {
