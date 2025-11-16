@@ -33,5 +33,8 @@ resource "docker_container" "nginx_server2" {
     internal = 80
     external = 9091
   }
+  lifecycle {
+    prevent_destroy = true
+  }
   
 }
