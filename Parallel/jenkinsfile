@@ -18,7 +18,7 @@ pipeline {
                     agent { label 'windows' }
                     steps {
                         echo "Running tests on Windows node: ${NODE_NAME}"
-                        bat 'echo execited on windows'
+                        bat 'docker version'
                     }
                 }
 
