@@ -10,7 +10,7 @@ pipeline {
                     agent { label 'linux' }
                     steps {
                         echo "Running build on Linux node: ${NODE_NAME}"
-                        sh 'make build'
+                        sh 'df -hl;uname -a'
                     }
                 }
 
