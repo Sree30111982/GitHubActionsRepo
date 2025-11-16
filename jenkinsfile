@@ -35,11 +35,13 @@ pipeline {
             }
         }
 
+        
+
         stage('Test terraform from jenkins') {
             steps {
                 echo 'Running tests...'
-                sh 'terraform plan'
-                sh 'terraform apply'
+                cmd 'terraform plan'
+                cmd 'terraform apply'
             }
         }
     }
