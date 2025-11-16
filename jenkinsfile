@@ -40,8 +40,8 @@ pipeline {
         stage('Test terraform from jenkins') {
             steps {
                 echo 'Running tests...'
-                cmd 'terraform plan'
-                cmd 'terraform apply'
+                bat 'terraform plan'
+                bat 'terraform apply'
             }
         }
     }
