@@ -1,0 +1,43 @@
+pipeline {
+    agent none     // we assign agents per stage
+
+    stages {
+
+        stage('Parallel Stages on Multiple Nodes') {
+            parallel {
+
+                stage('Build on Linux Node') {
+                    agent { label 'linux' }
+                    steps {
+                        echo "Running build on Linux node: ${NODE_NAME}"
+                        sh 'make build'
+                    }
+                }
+
+                stage('Test on Windows Node') {
+                    agent { label 'windows' }
+                    steps {
+                        echo "Running tests on Windows node: ${NODE_NAME}"
+                        bat 'run-tests.bat'
+                    }
+                }
+
+                stage('Static Analysis on Docker Node') {
+                    agent { label 'docker' }
+                    steps {
+                        echo "Running static analysis in parallel"
+                        sh 'docker run my-linter analyze ./src'
+                    }
+                }
+            }
+        }
+
+        stage('Deploy (sequential stage)') {
+            agent { label 'linux' }
+            steps {
+                echo "Deploying..."
+                sh './deploy.sh'
+            }
+        }
+    }
+}

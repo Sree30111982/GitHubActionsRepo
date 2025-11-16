@@ -24,7 +24,7 @@ resource "docker_container" "nginx_server1" {
   }
   #depends_on = [ docker_container.nginx_server2 ]
 
-    
+
 }
 
 
