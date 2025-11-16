@@ -30,7 +30,7 @@ pipeline {
             agent { label 'linux' }
             steps {
                 echo "Deploying..."
-                sh 'executed on linux'
+                sh 'top;free -m'
             }
         }
     }
