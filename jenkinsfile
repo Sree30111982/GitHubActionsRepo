@@ -40,6 +40,7 @@ pipeline {
         stage('Test terraform from jenkins') {
             steps {
                 echo 'Running tests...'
+                bat 'terraform init'
                 bat 'terraform plan'
                 bat 'terraform apply'
             }
