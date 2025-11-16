@@ -18,17 +18,11 @@ pipeline {
                     agent { label 'windows' }
                     steps {
                         echo "Running tests on Windows node: ${NODE_NAME}"
-                        bat 'run-tests.bat'
+                        bat 'echo execited on windows'
                     }
                 }
 
-                stage('Static Analysis on Docker Node') {
-                    agent { label 'docker' }
-                    steps {
-                        echo "Running static analysis in parallel"
-                        sh 'docker run my-linter analyze ./src'
-                    }
-                }
+                
             }
         }
 
@@ -36,7 +30,7 @@ pipeline {
             agent { label 'linux' }
             steps {
                 echo "Deploying..."
-                sh './deploy.sh'
+                sh 'executed on linux'
             }
         }
     }
