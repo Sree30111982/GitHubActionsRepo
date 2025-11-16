@@ -35,10 +35,11 @@ pipeline {
             }
         }
 
-        stage('Test') {
+        stage('Test terraform from jenkins') {
             steps {
                 echo 'Running tests...'
-                // e.g. sh 'mvn test'
+                sh 'terraform plan'
+                sh 'terraform apply'
             }
         }
     }
